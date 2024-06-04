@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 def get_cigar_data():
-    url = "https://www.finestcubancigars.com/"
+    url = "https://www.charutosonline.com/"
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
     }
@@ -18,17 +18,17 @@ def get_cigar_data():
     cigars = []
 
     try:
-        products = soup.find_all('div', class_='product details product-item-details')
+        products = soup.find_all('li', class_='item')
 
         for product in products:
             try:
-                name_element = product.find('a', class_='product-item-link')
+                name_element = product.find('h3', class_='product-name').find('a')
                 if name_element:
                     name = name_element.text.strip()
                 else:
                     name = "Nome não encontrado"
 
-                price_element = product.find('span', class_='price')
+                price_element = product.find('div', class_='price-box').find('span', class_='price')
                 if price_element:
                     price = price_element.text.strip()
                 else:
