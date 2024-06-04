@@ -18,7 +18,7 @@ def get_cigar_data():
     cigars = []
 
     try:
-        products = soup.find_all('div', class_='product-item-info')
+        products = soup.find_all('div', class_='product details product-item-details')
 
         for product in products:
             try:
